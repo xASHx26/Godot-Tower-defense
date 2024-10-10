@@ -1,0 +1,81 @@
+[gd_scene load_steps=16 format=3 uid="uid://cc20sxaer36b2"]
+
+[ext_resource type="PackedScene" uid="uid://dvrksdp5utq1u" path="res://assets/Rock - Copy.glb" id="1_2hrud"]
+[ext_resource type="PackedScene" uid="uid://ts2ctic56t6k" path="res://assets/Grass (2).glb" id="1_p85ss"]
+[ext_resource type="PackedScene" uid="uid://bewncrdu56r75" path="res://assets/Rock (1) - Copy.glb" id="3_nd64g"]
+[ext_resource type="PackedScene" uid="uid://bqk6j7dimb2gu" path="res://assets/Tree (2) - Copy.glb" id="3_of1ua"]
+[ext_resource type="PackedScene" uid="uid://dlc4jgqqr2k73" path="res://assets/Rock (2) - Copy.glb" id="4_itg6s"]
+[ext_resource type="PackedScene" uid="uid://dl2cwr6pjxakw" path="res://assets/Grass.glb" id="5_ofw5m"]
+[ext_resource type="PackedScene" uid="uid://b4erjo1u3eub0" path="res://assets/Tree (3).glb" id="7_rt3sr"]
+[ext_resource type="PackedScene" uid="uid://bbjahau5rcu51" path="res://assets/Tree (4).glb" id="8_g4tv0"]
+[ext_resource type="PackedScene" uid="uid://bpl1qadtdyee5" path="res://assets/Tree (5).glb" id="9_cvjgd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q2t8m"]
+transparency = 1
+blend_mode = 1
+albedo_color = Color(0.776471, 0.776471, 0.776471, 0.196078)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0lslw"]
+material = SubResource("StandardMaterial3D_q2t8m")
+size = Vector3(4, 0.1, 4)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_rt36i"]
+data = PackedVector3Array(-2, 0.05, 2, 2, 0.05, 2, -2, -0.05, 2, 2, 0.05, 2, 2, -0.05, 2, -2, -0.05, 2, 2, 0.05, -2, -2, 0.05, -2, 2, -0.05, -2, -2, 0.05, -2, -2, -0.05, -2, 2, -0.05, -2, 2, 0.05, 2, 2, 0.05, -2, 2, -0.05, 2, 2, 0.05, -2, 2, -0.05, -2, 2, -0.05, 2, -2, 0.05, -2, -2, 0.05, 2, -2, -0.05, -2, -2, 0.05, 2, -2, -0.05, 2, -2, -0.05, -2, 2, 0.05, 2, -2, 0.05, 2, 2, 0.05, -2, -2, 0.05, 2, -2, 0.05, -2, 2, 0.05, -2, -2, -0.05, 2, 2, -0.05, 2, -2, -0.05, -2, 2, -0.05, 2, 2, -0.05, -2, -2, -0.05, -2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ouis"]
+albedo_color = Color(0.614423, 0.319068, 0.0238906, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_fw8v1"]
+material = SubResource("StandardMaterial3D_2ouis")
+size = Vector3(4, 0.1, 4)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_3hqly"]
+data = PackedVector3Array(-2, 0.05, 2, 2, 0.05, 2, -2, -0.05, 2, 2, 0.05, 2, 2, -0.05, 2, -2, -0.05, 2, 2, 0.05, -2, -2, 0.05, -2, 2, -0.05, -2, -2, 0.05, -2, -2, -0.05, -2, 2, -0.05, -2, 2, 0.05, 2, 2, 0.05, -2, 2, -0.05, 2, 2, 0.05, -2, 2, -0.05, -2, 2, -0.05, 2, -2, 0.05, -2, -2, 0.05, 2, -2, -0.05, -2, -2, 0.05, 2, -2, -0.05, 2, -2, -0.05, -2, 2, 0.05, 2, -2, 0.05, 2, 2, 0.05, -2, -2, 0.05, 2, -2, 0.05, -2, 2, 0.05, -2, -2, -0.05, 2, 2, -0.05, 2, -2, -0.05, -2, 2, -0.05, 2, 2, -0.05, -2, -2, -0.05, -2)
+
+[node name="Tiles" type="Node3D"]
+
+[node name="floor" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_0lslw")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_rt36i")
+
+[node name="turret" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_fw8v1")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="turret"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="turret/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_3hqly")
+
+[node name="Root Scene" parent="." instance=ExtResource("1_p85ss")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.296824, 0)
+
+[node name="Root Scene2" parent="." instance=ExtResource("5_ofw5m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0978297, 0)
+
+[node name="Root Scene3" parent="." instance=ExtResource("3_nd64g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.301386, 0)
+
+[node name="Root Scene4" parent="." instance=ExtResource("4_itg6s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.72597, 0)
+
+[node name="Rock - Copy" parent="." instance=ExtResource("1_2hrud")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.83831, 0)
+
+[node name="Rock - Copy2" parent="." instance=ExtResource("1_2hrud")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.15093, 0)
+
+[node name="Root Scene5" parent="." instance=ExtResource("3_of1ua")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.36724, 0)
+
+[node name="Tree (3)" parent="." instance=ExtResource("7_rt3sr")]
+transform = Transform3D(2.74, 0, 0, 0, 2.74, 0, 0, 0, 2.74, 0, 17.1233, 0)
+
+[node name="Tree (4)" parent="." instance=ExtResource("8_g4tv0")]
+transform = Transform3D(0.005, 0, 0, 0, 0.005, 0, 0, 0, 0.005, 0, 19.6465, 0)
+
+[node name="Tree (5)" parent="." instance=ExtResource("9_cvjgd")]
+transform = Transform3D(2.2, 0, 0, 0, 2.2, 0, 0, 0, 2.2, 0, 31.3149, 0)

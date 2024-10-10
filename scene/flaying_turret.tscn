@@ -1,0 +1,92 @@
+[gd_scene load_steps=8 format=3 uid="uid://dfxcww1vq0o5t"]
+
+[ext_resource type="Script" path="res://scene/turret.gd" id="1_eq287"]
+[ext_resource type="PackedScene" uid="uid://el45ewasicou" path="res://scene/pojectile.tscn" id="2_fwlj2"]
+[ext_resource type="PackedScene" uid="uid://cl1po3ils4efw" path="res://assets/Tower.glb" id="3_ujlbb"]
+[ext_resource type="PackedScene" uid="uid://c0t1032kk33kg" path="res://assets/Cannon.glb" id="4_o63t3"]
+
+[sub_resource type="Animation" id="Animation_5a80g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("tower/canon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 9.72, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("tower/canon:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qdast"]
+resource_name = "fire"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("tower/canon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 9.72, 0), Vector3(0, 9.72, -0.64), Vector3(0, 9.72, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("tower/canon:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.202458, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dsc1d"]
+_data = {
+"RESET": SubResource("Animation_5a80g"),
+"fire": SubResource("Animation_qdast")
+}
+
+[node name="turret" type="Node3D" groups=["air"]]
+transform = Transform3D(0.47, 0, 0, 0, 0.47, 0, 0, 0, 0.47, 0, 0, 0)
+rotation_order = 0
+script = ExtResource("1_eq287")
+projectile = ExtResource("2_fwlj2")
+
+[node name="tower" parent="." instance=ExtResource("3_ujlbb")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="canon" parent="tower" instance=ExtResource("4_o63t3")]
+transform = Transform3D(3.845, 0, 0, 0, 3.845, 0, 0, 0, 3.845, 0, 9.72, 0)
+rotation_order = 0
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dsc1d")
+}
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+
+[editable path="tower"]

@@ -1,0 +1,98 @@
+[gd_scene load_steps=5 format=3 uid="uid://cmx2j51s6gnam"]
+
+[ext_resource type="Script" path="res://SCRIPTS/victory.gd" id="1_2ogod"]
+[ext_resource type="Script" path="res://SCRIPTS/exit_button_2.gd" id="2_ngbor"]
+[ext_resource type="Texture2D" uid="uid://djar56mjs5fyx" path="res://assets/images/pngwing.com.png" id="2_td4yy"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_b0f12"]
+font_size = 96
+
+[node name="CanvasLayer" type="CanvasLayer" groups=["victory"]]
+script = ExtResource("1_2ogod")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(8.32, 8.32)
+mouse_filter = 2
+color = Color(0.0186, 0.02, 0.01958, 0.356863)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer"]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Victory"
+label_settings = SubResource("LabelSettings_b0f12")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+mouse_default_cursor_shape = 2
+
+[node name="RetryButton" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "Retry"
+
+[node name="exitButton" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "Exit
+"
+
+[node name="exitButton2" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer" groups=["goal"]]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "level2
+"
+script = ExtResource("2_ngbor")
+file_path = "res://scene/level2.tscn"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+size_flags_stretch_ratio = 4.44
+
+[node name="1stStar" type="Sprite2D" parent="CenterContainer/PanelContainer/VBoxContainer2"]
+position = Vector2(68, 59)
+scale = Vector2(0.0400006, 0.0400006)
+texture = ExtResource("2_td4yy")
+
+[node name="2ndStar" type="Sprite2D" parent="CenterContainer/PanelContainer/VBoxContainer2"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(200, 59)
+scale = Vector2(0.0400006, 0.0400006)
+texture = ExtResource("2_td4yy")
+
+[node name="3rdStar" type="Sprite2D" parent="CenterContainer/PanelContainer/VBoxContainer2"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(330, 59)
+scale = Vector2(0.0400006, 0.0400006)
+texture = ExtResource("2_td4yy")
+
+[connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer/exitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer/exitButton2" to="." method="_on_exit_button_2_pressed"]

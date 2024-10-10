@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://t0wuvhpdo66p"]
+
+[ext_resource type="Script" path="res://diff_manager/diffmanager.gd" id="1_5j8vu"]
+
+[sub_resource type="Curve" id="Curve_bbbc8"]
+min_value = 0.25
+max_value = 2.0
+_data = [Vector2(0, 2), 0.0, -1.74611, 0, 1, Vector2(0.980198, 0.288462), -1.74611, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_0bswn"]
+min_value = 10.0
+max_value = 150.0
+_data = [Vector2(0, 16.1539), 0.0, 134.512, 0, 1, Vector2(0.99505, 150), 134.512, 0.0, 1, 0]
+point_count = 2
+
+[node name="diffmanager" type="Node"]
+script = ExtResource("1_5j8vu")
+spawn_time_curve = SubResource("Curve_bbbc8")
+enemy_health = SubResource("Curve_0bswn")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

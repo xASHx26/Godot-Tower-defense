@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://jvommuq5mea7"]
+
+[ext_resource type="Script" path="res://turrets_manger.gd" id="1_t4dbg"]
+
+[node name="turrets_manger" type="Node"]
+script = ExtResource("1_t4dbg")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 446.0
+offset_top = 406.0
+offset_right = 513.0
+offset_bottom = 472.0
+scale = Vector2(3.57266, 3.57266)
+
+[node name="ground" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Ground
+"
+
+[node name="air" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "air
+"
+
+[connection signal="pressed" from="VBoxContainer/ground" to="." method="_on_ground_pressed"]
+[connection signal="pressed" from="VBoxContainer/air" to="." method="_on_air_pressed"]

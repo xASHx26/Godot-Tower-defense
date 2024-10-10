@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5wb21v3o2aqx"]
+
+[ext_resource type="Script" path="res://SCRIPTS/turret_manager.gd" id="1_agdc7"]
+
+[node name="turretManager" type="Node"]
+script = ExtResource("1_agdc7")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HFlowContainer" type="HFlowContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="ground" type="Button" parent="MarginContainer/HFlowContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "ground 
+turret
+"
+icon_alignment = 1
+
+[node name="air" type="Button" parent="MarginContainer/HFlowContainer"]
+layout_direction = 1
+layout_mode = 2
+size_flags_horizontal = 3
+text = "air
+turret
+"
+icon_alignment = 1
+
+[connection signal="pressed" from="MarginContainer/HFlowContainer/ground" to="." method="_on_ground_pressed"]
+[connection signal="pressed" from="MarginContainer/HFlowContainer/air" to="." method="_on_air_pressed"]

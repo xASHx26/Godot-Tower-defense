@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://c51cii7ofsvd0"]
+
+[ext_resource type="Script" path="res://margin_container.gd" id="1_sdanf"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_0gulk"]
+specular_color = Color(0.328748, 0.182384, 0.0429756, 1)
+
+[node name="MarginContainer" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sdanf")
+level = "res://scene/level1.tscn"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = SubResource("CanvasTexture_0gulk")
+
+[node name="VFlowContainer" type="VFlowContainer" parent="TextureRect"]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 2
+offset_left = 419.0
+offset_top = 124.0
+offset_right = 819.0
+offset_bottom = 524.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="start" type="Button" parent="TextureRect/VFlowContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 64
+text = "Start"
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="TextureRect/VFlowContainer"]
+position = Vector2(74, 205)
+
+[connection signal="pressed" from="TextureRect/VFlowContainer/start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="TextureRect/VFlowContainer/TouchScreenButton" to="." method="_on_touch_screen_button_pressed"]

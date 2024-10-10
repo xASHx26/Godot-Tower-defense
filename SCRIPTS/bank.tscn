@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://dblsa1g2tev47"]
+
+[ext_resource type="Script" path="res://SCRIPTS/bank.gd" id="1_6lpx3"]
+
+[node name="bank" type="Node" groups=["bank"]]
+script = ExtResource("1_6lpx3")
+starting_gold = 200
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 64
+text = "Gold: 20
+"
+vertical_alignment = 3

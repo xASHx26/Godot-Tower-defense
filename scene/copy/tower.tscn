@@ -1,0 +1,87 @@
+[gd_scene load_steps=8 format=3 uid="uid://wr6kgrfxue8p"]
+
+[ext_resource type="Script" path="res://scene/copy/tower.gd" id="1_qn4uh"]
+[ext_resource type="PackedScene" uid="uid://cl1po3ils4efw" path="res://assets/Tower.glb" id="2_jxg82"]
+[ext_resource type="PackedScene" uid="uid://78mg0i3m8ne4" path="res://scene/copy/projectile.tscn" id="2_wdfr7"]
+[ext_resource type="PackedScene" uid="uid://c0t1032kk33kg" path="res://assets/Cannon.glb" id="4_i18u7"]
+
+[sub_resource type="Animation" id="Animation_3ald5"]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cannon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 2.225, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cannon:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_o04um"]
+resource_name = "fire"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cannon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.266667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 2.225, 0), Vector3(0, 2.225, -0.2), Vector3(0, 2.225, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cannon:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.266667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.261799, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bgdk8"]
+_data = {
+"RESET": SubResource("Animation_3ald5"),
+"fire": SubResource("Animation_o04um")
+}
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_qn4uh")
+porjectile = ExtResource("2_wdfr7")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_bgdk8")
+}
+
+[node name="Cannon" parent="." instance=ExtResource("4_i18u7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.225, 0)
+
+[node name="Root Scene" parent="." instance=ExtResource("2_jxg82")]
+transform = Transform3D(0.235, 0, 0, 0, 0.235, 0, 0, 0, 0.235, 0, 0, 0)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

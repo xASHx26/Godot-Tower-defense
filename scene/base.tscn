@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dab0ljqoc4bgf"]
+
+[ext_resource type="Script" path="res://scene/base.gd" id="1_shg01"]
+[ext_resource type="PackedScene" uid="uid://drfmcbl4n6gem" path="res://assets/Wooden Fortress.glb" id="2_s3n1j"]
+[ext_resource type="Texture2D" uid="uid://c26wtj32tkrgs" path="res://assets/images/basebar-Photoroom (2).png" id="3_jxnvj"]
+[ext_resource type="Texture2D" uid="uid://dvha012st1yal" path="res://assets/images/basebar-Photoroom.png" id="4_8c061"]
+
+[node name="base" type="Node3D" groups=["base"]]
+script = ExtResource("1_shg01")
+max_health = 10
+
+[node name="Root Scene" parent="." instance=ExtResource("2_s3n1j")]
+transform = Transform3D(-14, 0, -1.22392e-06, 0, 14, 0, 1.22392e-06, 0, -14, 0, 0, 0)
+
+[node name="base_bar" type="TextureProgressBar" parent="."]
+texture_filter = 1
+offset_right = 904.0
+offset_bottom = 612.0
+scale = Vector2(0.132267, 0.219125)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+value = 100.0
+rounded = true
+fill_mode = 5
+radial_initial_angle = 360.0
+nine_patch_stretch = true
+texture_under = ExtResource("3_jxnvj")
+texture_progress = ExtResource("4_8c061")

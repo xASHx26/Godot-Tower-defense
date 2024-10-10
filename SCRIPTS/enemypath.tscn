@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxo7lggrcgnxl"]
+
+[ext_resource type="Script" path="res://scene/enemypath.gd" id="1_bbgrd"]
+[ext_resource type="PackedScene" uid="uid://cdsdlpwryaimf" path="res://enemys/enemy.tscn" id="2_wfiu0"]
+
+[sub_resource type="Curve3D" id="Curve3D_cig1q"]
+bake_interval = 0.01
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 2, 0.185, -4.035, 0, 0, 0, 0, 0, 0, 1.81538, 0.216189, -44.2302),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[node name="enemypath" type="Path3D" node_paths=PackedStringArray("diff_manager", "victory")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.815, 0.035)
+rotation_order = 0
+top_level = true
+curve = SubResource("Curve3D_cig1q")
+script = ExtResource("1_bbgrd")
+enemy_scene = ExtResource("2_wfiu0")
+diff_manager = NodePath("")
+victory = NodePath("")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

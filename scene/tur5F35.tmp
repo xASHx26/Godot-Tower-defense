@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://dls1bqjcub0h"]
+
+[ext_resource type="PackedScene" uid="uid://cl1po3ils4efw" path="res://assets/Tower.glb" id="1_aieka"]
+[ext_resource type="Script" path="res://scene/turret.gd" id="1_wa8rg"]
+[ext_resource type="PackedScene" uid="uid://el45ewasicou" path="res://scene/pojectile.tscn" id="2_7uc2p"]
+[ext_resource type="PackedScene" uid="uid://c0t1032kk33kg" path="res://assets/Cannon.glb" id="2_qvpjs"]
+
+[node name="turret" type="Node3D"]
+script = ExtResource("1_wa8rg")
+pojectile = ExtResource("2_7uc2p")
+
+[node name="tower" parent="." instance=ExtResource("1_aieka")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="canon" parent="tower" instance=ExtResource("2_qvpjs")]
+transform = Transform3D(3.845, 0, 0, 0, 3.845, 0, 0, 0, 3.845, 0, 9.72, 0)
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
